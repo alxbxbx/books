@@ -1,0 +1,64 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Books</title>
+		<script src="{% static 'bookapp/js/jquery-2.1.0.min.js' %}"></script>
+		<script src="{% static 'bookapp/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'bookapp/js/books.js' %}"></script>
+		<link rel="stylesheet" type="text/css" href="{% static 'bookapp/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'bookapp/css/books.css' %}">
+	</head>
+	<body>
+		<div class="container">
+			<div class="page-header">
+				<h1>Books</h1>
+			</div>
+			<p>Welcome {{ user }}, <a href="{% url 'auth:logout' %}?next=/">Logout</a></p>
+			<table class=".table-striped">
+			<tr>
+				<th>Title</th>
+				<th>Author</th>
+				<th>Genre</th>
+				<th>Year of publication</th>
+				<th><button class="btn btn-success addButton">Add new</button></th>
+			</tr>
+			{% for book in books %}
+			<tr>
+				<td>{{ book.title }}</td>
+				<td>{{ book.author }}</td>
+				<td>{{ book.genre }}</td>
+				<td>{{ book.year }}</td>
+				<td><button class="btn btn-primary buttons" value="{{ book.id }}">Edit</button></td>
+				<td><button class="btn btn-danger deleteBook" value="{{ book.id }}">Delete</button></td>
+			</tr>
+			{% endfor %}
+		</table>	
+
+		<!-- Modal -->
+		<div class="modal fade myModal" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">Book</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>Title:</p><input id="title" type="text">
+		        <p>Author:</p><input id="author" type="text">
+		        <p>Genre:</p><input id="genre" type="text">
+		        <p>Year:</p><input id="year" type="number">
+		        <input type="hidden" id="bookId">
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary saveButton">Save changes</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	</div>
+		
+		
+	</body>
+</html>

@@ -1,0 +1,135 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'bookapp/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bookapp/css/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bookapp/css/style.css' %}">
+    
+    <script src="{% static 'bookapp/js/jquery-2.1.0.min.js' %}"></script>
+    <script src="{% static 'bookapp/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bookapp/js/index.js' %}"></script>
+
+    <link rel="shortcut icon" type="image/png" href="{% static ''%}"/>
+
+  </head>
+
+  <body>
+    <div class="container">
+
+    <div class="form">
+      
+      <ul class="tab-group">
+        <li class="tab active"><a href="#signup">Sign Up</a></li>
+        <li class="tab"><a href="#login">Log In</a></li>
+      </ul>
+      
+      <div class="tab-content">
+        <div id="signup">   
+          <h1>Sign Up</h1>
+          
+          <form action="" method="post" onsubmit="return false">
+          {% csrf_token %}
+          <div class="top-row">
+            <div class="field-wrap">
+              <label>
+                First Name<span class="req">*</span>
+              </label>
+              <input id="fname" type="text" required autocomplete="off" />
+            </div>
+        
+            <div class="field-wrap">
+              <label>
+                Last Name<span class="req">*</span>
+              </label>
+              <input id="lname" type="text"required autocomplete="off"/>
+            </div>
+          </div>
+
+          <div class="field-wrap">
+            <label>
+              Email Address<span class="req">*</span>
+            </label>
+            <input id="email" type="email"required autocomplete="off"/>
+          </div>
+
+          <div class="field-wrap">
+            <label>
+              Username<span class="req">*</span>
+            </label>
+            <input id="username" type="text"required autocomplete="off"/>
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              Set A Password<span class="req">*</span>
+            </label>
+            <input id="password" type="password"required autocomplete="off"/>
+          </div>
+          
+          <button type="submit" class="signupBtn button button-block"/>Get Started</button>
+          
+          </form>
+
+        </div>
+        
+        <div id="login">   
+          <h1>Welcome Back!</h1>
+
+          <ul>
+            <li>
+              <a href="{% url 'social:begin' 'facebook' %}?next=/books/">Login with Facebook</a>
+            </li>
+          </ul>
+          
+          <form action="" method="post" onsubmit="return false">
+          {% csrf_token %}
+          <div class="field-wrap">
+            <label>
+              Username<span class="req">*</span>
+            </label>
+            <input id="loginUsername" name="username" type="text" required autocomplete="off"/>
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              Password<span class="req">*</span>
+            </label>
+            <input id="loginPassword" name="password" type="password" required autocomplete="off"/>
+          </div>
+          
+          
+          <button class="loginBtn button button-block"/>Log In</button>
+
+          </form>
+
+        </div>
+        
+      </div><!-- tab-content -->
+      
+    </div> <!-- /form -->
+
+    <!-- Modal -->
+    <div class="modal fade myModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Message</h4>
+          </div>
+          <div class="modal-body">
+            <p id="modalP"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+  </div>
+  </body>
+</html>
